@@ -53,6 +53,6 @@ public class ManageCustomerFormController {
     }
 
     private boolean isValidData(){
-
+        return false;
     }
 }

@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS customer
 CREATE TABLE IF NOT EXISTS item
 (
     code        VARCHAR(30) PRIMARY KEY,
-    description VARCHAR(30)   NOT NULL,
+    description VARCHAR(200)   NOT NULL,
     qty         INT           NOT NULL,
     unit_price  DECIMAL(8, 2) NOT NULL
 );
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS order_item
 (
     order_id   VARCHAR(10),
     item_code  VARCHAR(30),
-    CONSTRAINT pk_order_item PRIMARY KEY (order_id, code),
+    CONSTRAINT pk_order_item PRIMARY KEY (order_id, item_code),
     qty        INT           NOT NULL,
     unit_price DECIMAL(8, 2) NOT NULL,
     CONSTRAINT fk_order_item1 FOREIGN KEY (order_id) REFERENCES "order" (id),

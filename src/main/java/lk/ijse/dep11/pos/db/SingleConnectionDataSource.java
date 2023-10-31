@@ -12,17 +12,17 @@ import java.util.Properties;
 
 public class SingleConnectionDataSource {
     private static SingleConnectionDataSource instance;
-    private Connection connection;
+    private final Connection connection;
     private SingleConnectionDataSource(){
 
         try {
             Properties properties = new Properties();
-            properties.load(getClass().getResourceAsStream("/application.properties"));
+            properties.load(this.getClass().getResourceAsStream("/application.properties"));
             String url = properties.getProperty("db.datasource.url");
             String username = properties.getProperty("db.datasource.username");
             String password = properties.getProperty("db.datasource.password");
             connection = DriverManager.getConnection(url, username, password);
-            getConnection();
+            generateScheme();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
